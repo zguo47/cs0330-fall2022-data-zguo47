@@ -139,7 +139,8 @@ int negate(int x) {
  *   Points: 4
  */
 int is_equal(int x, int y) { 
-	return !(x&(~y)); 
+	// return !(x&(~y)); 
+	return !(x^y);
 }
 
 /*
