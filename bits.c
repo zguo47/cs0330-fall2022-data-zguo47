@@ -153,7 +153,7 @@ int is_equal(int x, int y) {
  */
 int div_pwr_2(int x, int n) {
 	// return (x >> n) + !((x >> 31)+1); 
-	return (x + (x >> 31) & ((n << 1) + ~0)) >> n;
+	return (x + (x >> 31) & ((1 << n) + ~0)) >> n;
 }
 
 /*
