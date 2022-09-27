@@ -165,11 +165,8 @@ int div_pwr_2(int x, int n) {
  *   Points: 6
  */
 int conditional(int x, int y, int z) { 
-	// int sum = y + z;
-	// return sum + ((~y)+1) + ((~z)+1);
-	 
-	// int diff = y^z;
-	return 2;
+	return (y & (~(!(!x))+1)) + (z & (~(!x)+1));
+	// return 2;
 }
 
 /*
