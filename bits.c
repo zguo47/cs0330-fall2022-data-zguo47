@@ -152,7 +152,8 @@ int is_equal(int x, int y) {
  *   Points: 4
  */
 int div_pwr_2(int x, int n) {
-	return (~(~(x + (1 << n))+2)+1) >> n; 
+	// return (~(~(x + (1 << n))+2)+1) >> n;
+	return (x >> n) + !((x >> 31)+1);  
 }
 
 /*
