@@ -207,8 +207,8 @@ int leastBitPos(int x) { return 2; }
  *   Points: 10
  */
 int abs_val(int x) {
-	int diff = !(x^((~x)+1)) 
-	return ; 
+	// int diff = !(x^((~x)+1)) 
+	return 2; 
 }
 
 /*
