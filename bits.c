@@ -180,7 +180,12 @@ int conditional(int x, int y, int z) {
  *   Points: 6
  */
 int add_ok(int x, int y) {
-	return 2; 
+	int z = x + y;
+	int a = x >> 31;
+	int b = y >> 31;
+	int c = z >> 31;
+	return !!(a^b)|(!(a^c)&!(b^c));
+ 
 }
 
 /*
