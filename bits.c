@@ -113,7 +113,9 @@ EXAMPLES OF ACCEPTABLE CODING STYLE:
  *   Max ops: 8
  *   Points: 2
  */
-int bit_and(int x, int y) { return 2; }
+int bit_and(int x, int y) { 
+	return ~(~x|~y); 
+}
 
 /*
  * negate - Return -x
@@ -124,7 +126,9 @@ int bit_and(int x, int y) { return 2; }
  *   Max ops: 5
  *   Points: 4
  */
-int negate(int x) { return 2; }
+int negate(int x) {
+	return (~x) + 1; 
+}
 
 /*
  * is_equal - Return 1 if x == y, else return 0
@@ -134,7 +138,9 @@ int negate(int x) { return 2; }
  *   Max ops: 5
  *   Points: 4
  */
-int is_equal(int x, int y) { return 2; }
+int is_equal(int x, int y) { 
+	return !(x&(~y)); 
+}
 
 /*
  * div_pwr_2 - Compute x/(2^n), for 0 <= n <= 30
@@ -145,7 +151,10 @@ int is_equal(int x, int y) { return 2; }
  *   Max ops: 15
  *   Points: 4
  */
-int div_pwr_2(int x, int n) { return 2; }
+int div_pwr_2(int x, int n) {
+	int minus_one = (~1) + 1;
+	return (x + (1 << n) + minus_one) >> n; 
+}
 
 /*
  * conditional - Compute the result of x ? y : z
@@ -155,7 +164,13 @@ int div_pwr_2(int x, int n) { return 2; }
  *   Max ops: 16
  *   Points: 6
  */
-int conditional(int x, int y, int z) { return 2; }
+int conditional(int x, int y, int z) { 
+	// int sum = y + z;
+	// return sum + ((~y)+1) + ((~z)+1);
+	 
+	int diff = y^z;
+	return z^(!x)
+}
 
 /*
  * add_ok - Return 0 if x+y will overflow, resulting in an incorrect computation.
@@ -167,7 +182,9 @@ int conditional(int x, int y, int z) { return 2; }
  *   Max ops: 20
  *   Points: 6
  */
-int add_ok(int x, int y) { return 2; }
+int add_ok(int x, int y) {
+	return 2; 
+}
 
 /*
  * leastBitPos - Return a mask that marks the position of the
@@ -189,7 +206,10 @@ int leastBitPos(int x) { return 2; }
  *   Max ops: 6
  *   Points: 10
  */
-int abs_val(int x) { return 2; }
+int abs_val(int x) {
+	int diff = !(x^((~x)+1)) 
+	return ; 
+}
 
 /*
  * bang - Compute !x without using !
