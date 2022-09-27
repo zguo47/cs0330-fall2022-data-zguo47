@@ -197,7 +197,9 @@ int add_ok(int x, int y) {
  *   Max ops: 6
  *   Points: 8
  */
-int leastBitPos(int x) { return 2; }
+int leastBitPos(int x) { 
+	return 2; 
+}
 
 /*
  * abs_val - Return the absolute value of x
@@ -222,4 +224,7 @@ int abs_val(int x) {
  *   Max ops: 12
  *   Points: 10
  */
-int bang(int x) { return 2; }
+int bang(int x) { 
+	// return ~(~0 + ((x << 31) ^ x))+1;
+	return ((x >> 31) + 1) & ((((~x)+1) >> 31) + 1);
+}
