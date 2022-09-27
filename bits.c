@@ -168,8 +168,8 @@ int conditional(int x, int y, int z) {
 	// int sum = y + z;
 	// return sum + ((~y)+1) + ((~z)+1);
 	 
-	int diff = y^z;
-	return z^(!x)
+	// int diff = y^z;
+	return 2;
 }
 
 /*
