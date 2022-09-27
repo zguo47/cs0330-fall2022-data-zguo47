@@ -139,7 +139,6 @@ int negate(int x) {
  *   Points: 4
  */
 int is_equal(int x, int y) { 
-	// return !(x&(~y)); 
 	return !(x^y);
 }
 
@@ -153,7 +152,7 @@ int is_equal(int x, int y) {
  *   Points: 4
  */
 int div_pwr_2(int x, int n) {
-	int minus_one = (~1) + 1;
+	unsigned int minus_one = (~1) + 1;
 	return (x + (1 << n) + minus_one) >> n; 
 }
 
