@@ -198,7 +198,7 @@ int add_ok(int x, int y) {
  *   Points: 8
  */
 int leastBitPos(int x) { 
-	return 2; 
+	return x & ((~x)+1); 
 }
 
 /*
