@@ -113,7 +113,10 @@ EXAMPLES OF ACCEPTABLE CODING STYLE:
  *   Max ops: 8
  *   Points: 2
  */
-int bit_and(int x, int y) { 
+int bit_and(int x, int y) {
+	// We OR NOT x and NOT y, so we set in the result 1s for either NOT x and 
+	// NOT y has a 1 there. Then, we NOT the result to get both x and y has a 
+	// a 1 there. 
 	return ~(~x|~y); 
 }
 
@@ -127,6 +130,8 @@ int bit_and(int x, int y) {
  *   Points: 4
  */
 int negate(int x) {
+	// When we add the NOT x and x together, we find that the result is -1,
+	// so we add 1 to get the negation of x. 
 	return (~x) + 1; 
 }
 
@@ -138,7 +143,10 @@ int negate(int x) {
  *   Max ops: 5
  *   Points: 4
  */
-int is_equal(int x, int y) { 
+int is_equal(int x, int y) {
+	// If x and y are the same, x^y should return 0 because there is no 
+	// difference. We LOGICAL NOT x^y, so it will return 1 when x^y is 0, and
+	// return 0 otherwise.  
 	return !(x^y);
 }
 
@@ -152,7 +160,8 @@ int is_equal(int x, int y) {
  *   Points: 4
  */
 int div_pwr_2(int x, int n) {
-	// return (x >> n) + !((x >> 31)+1); 
+	// When x is negative, we will add n and then minus one so that it will 
+	// round up instead of round down; then we shift to right n bits. 
 	return (x + ((x >> 31) & ((1 << n) + ~0))) >> n;
 }
 
@@ -164,9 +173,11 @@ int div_pwr_2(int x, int n) {
  *   Max ops: 16
  *   Points: 6
  */
-int conditional(int x, int y, int z) { 
+int conditional(int x, int y, int z) {
+	// when x is not 0, we double LOGICAL NOT x to make it 1, and we NOT it to
+	//get -2, and add 1 to get -1, so the left side will keep y and right side 
+	// 0. The rightside works the same way, but reverse. 
 	return (y & (~(!(!x))+1)) + (z & (~(!x)+1));
-	// return 2;
 }
 
 /*
@@ -180,6 +191,10 @@ int conditional(int x, int y, int z) {
  *   Points: 6
  */
 int add_ok(int x, int y) {
+	// We shift the sum of x and y, and x and y themselves to check 
+	// their sign. When x and y have different signs, the sum will not overflow.
+	// When x and y have same signs and different sign with their sum, there
+	// is an overflow occur. 
 	int z = x + y;
 	int a = x >> 31;
 	int b = y >> 31;
@@ -197,7 +212,11 @@ int add_ok(int x, int y) {
  *   Max ops: 6
  *   Points: 8
  */
-int leastBitPos(int x) { 
+int leastBitPos(int x) {
+	// NOT x will have a 0 corresponding to the position of least significant 1
+	// bit, and all 1s to its right. So we add 1 to NOT x, which will make that
+	// position 1. We AND x with the result, except for that digit, everywhere
+	// else will become zero because they're different, so we get the mask. 
 	return x & ((~x)+1); 
 }
 
@@ -211,7 +230,8 @@ int leastBitPos(int x) {
  *   Points: 10
  */
 int abs_val(int x) {
-
+	// If x is negative, we add it with -1 and XOR it with -1 to get the 
+	// negation, if x is 0 or positive, it will return the orginal x. 
 	return (x + (x >> 31)) ^ (x >> 31); 
 }
 
@@ -225,6 +245,8 @@ int abs_val(int x) {
  *   Points: 10
  */
 int bang(int x) { 
-	// return ~(~0 + ((x << 31) ^ x))+1;
+	// When x is positive or negative, any of one side will evaluate to 0 and
+	// the otherside 1, so we get the final result 0; when x is 0, both side
+	// evaluate to 1, so we get the final result 1. 
 	return ((x >> 31) + 1) & ((((~x)+1) >> 31) + 1);
 }
